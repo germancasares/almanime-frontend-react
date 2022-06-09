@@ -1,4 +1,6 @@
-import { ComponentType, FunctionComponent, useMemo, useState } from 'react';
+import {
+  ComponentType, FunctionComponent, useMemo, useState,
+} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 // export const withMemberRequired = <T extends object>(
@@ -9,7 +11,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 //     const themeProps = 'a';
 
 //     useEffect(() => {
-      
+
 //     });
 
 //     // props comes afterwards so the can override the default ones.
@@ -17,6 +19,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 //   };
 // };
 
+// eslint-disable-next-line import/prefer-default-export
 export const withToken = <P extends object>(
   Component: ComponentType<P>,
 ): FunctionComponent<P> => (props: P) => {
@@ -24,11 +27,14 @@ export const withToken = <P extends object>(
     const { getAccessTokenSilently } = useAuth0();
     useMemo(async () => {
       try {
-        return setToken(await getAccessTokenSilently());
-      } catch (error) {}
+        setToken(await getAccessTokenSilently());
+      } catch (error) {
+        console.log(error);
+      }
     }, [getAccessTokenSilently]);
 
     return (
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <Component {...props} token={token} />
     );
   };

@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { useLocation, useParams, useNavigate, Link } from 'react-router-dom';
-import { mdiFilePlusOutline, mdiCog } from '@mdi/js'; 
+import {
+  useLocation, useParams, useNavigate, Link,
+} from 'react-router-dom';
+import { mdiFilePlusOutline, mdiCog } from '@mdi/js';
 import Icon from '@mdi/react';
 
 import routes from 'app/routes';
 import FansubApi from 'api/FansubApi';
-
-import Tabs from './_components/tabs';
-import MembersPage from './_components/members';
-import SubtitlesPage from './_components/subtitles';
 
 import './index.scss';
 import Loader from 'components/loader';
@@ -16,13 +14,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import UserApi from 'api/UserApi';
 import Permission from 'enums/Permission';
 import Helper from 'app/helper';
-
-export enum TabName {
-  Newest = 'Newest',
-  Subtitles = 'Subtitles',
-  Members = 'Members',
-  About = 'About',
-}
+import SubtitlesPage from './_components/subtitles';
+import MembersPage from './_components/members';
+import Tabs, { TabName } from './_components/tabs';
 
 const NewSubtitleButton = ({ acronym } : { acronym: string }) => (
   <Link className="button is-primary is-rounded" to={routes.subtitle.create.to(acronym)}>
@@ -43,6 +37,7 @@ const EditFansubButton = ({ acronym } : { acronym: string }) => (
 
 const JoinFansubButton = ({ onClick, isLoading } : { onClick: () => void, isLoading: boolean }) => (
   <button
+    type="button"
     className={`button is-primary is-rounded${isLoading ? ' is-loading' : ''}`}
     onClick={onClick}
   >
@@ -107,10 +102,8 @@ const View = ({ token }: { token?: string }) => {
           }
         </h1>
         <Tabs activeTab={activeTab} changeTab={changeTab} />
-        <>
-          { activeTab === TabName.Members ? <MembersPage acronym={acronym} /> : null }
-          { activeTab === TabName.Subtitles ? <SubtitlesPage acronym={acronym} /> : null }
-        </>
+        { activeTab === TabName.Members ? <MembersPage acronym={acronym} /> : null }
+        { activeTab === TabName.Subtitles ? <SubtitlesPage acronym={acronym} /> : null }
       </section>
     </main>
   );

@@ -1,19 +1,28 @@
-import Video from './_components/video';
+import Player from 'components/player/player';
+import WaveForm from './_components/waveform';
 
-const Build = () => {
-  return (
-    <>
-      Hello world
-      <Video options={{
-        autoplay: true,
+const Build = () => (
+  <>
+    Hello world
+    <Player
+      playerOptions={{
         controls: true,
+        responsive: true,
         sources: [{
-          src: 'http://vjs.zencdn.net/v/oceans.mp4',
+          src: '/OuterScienceSubs.mp4',
           type: 'video/mp4',
         }],
-      }} />
-    </>
-  );
-};
+      }}
+      subtitleOptions={{
+        subUrl: '/OuterScienceSubs.ass',
+        fonts: [
+          'http://fonts.cdnfonts.com/css/gisha',
+          'http://fonts.cdnfonts.com/css/aharoni',
+        ],
+      }}
+    />
+    <WaveForm />
+  </>
+);
 
 export default Build;

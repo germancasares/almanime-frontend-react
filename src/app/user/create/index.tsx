@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import UserApi from 'api/UserApi';
 import routes from 'app/routes';
 import Loader from 'components/loader';
@@ -33,12 +34,12 @@ const Create = ({ token }: { token?: string }) => {
           <div className="field">
             <label className="label" htmlFor="name">Username</label>
             <div className="control">
-              <input 
-                name="name" 
-                className="input" 
-                type="text" 
-                placeholder="Luffy" 
-                onChange={({ target: { value } }) => setUser({ name: value, permissions: {} })} 
+              <input
+                name="name"
+                className="input"
+                type="text"
+                placeholder="Luffy"
+                onChange={({ target: { value } }) => setUser({ name: value, permissions: {} })}
               />
             </div>
           </div>
@@ -50,7 +51,6 @@ const Create = ({ token }: { token?: string }) => {
       </section>
     </main>
   );
-
 };
 
 export default Create;

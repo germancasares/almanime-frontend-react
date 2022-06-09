@@ -31,11 +31,15 @@ const Row = ({
     <td>{episode.name}</td>
     <td>{episode.duration}</td>
     <td>{Formatter.DateFull(episode.aired)}</td>
-    <td>{Object.entries(fansubs).map(([fansub, subtitle]) => (
-      <a href={`${process.env.REACT_APP_API}${subtitle}`} key={fansub}>
-        {fansub}
-      </a>
-    ))}</td>
+    <td>
+      {
+        Object.entries(fansubs).map(([fansub, subtitle]) => (
+          <a href={`${process.env.REACT_APP_API}${subtitle}`} key={fansub}>
+            {fansub}
+          </a>
+        ))
+      }
+    </td>
   </tr>
 );
 
@@ -48,9 +52,7 @@ const Episodes = ({ episodes, episodeFansubs }: Props) => (
       <Header />
     </tfoot>
     <tbody>
-      {episodes.map((episode) => {
-        return <Row episode={episode} key={episode.id} fansubs={episodeFansubs[episode.number]} />;
-      })}
+      {episodes.map((episode) => <Row episode={episode} key={episode.id} fansubs={episodeFansubs[episode.number]} />)}
     </tbody>
   </table>
 );

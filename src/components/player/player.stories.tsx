@@ -42,7 +42,7 @@ DefaultWithSubtitles.args = {
   subtitleOptions: {
     subUrl: '/OuterScienceSubs.ass',
     fonts: [
-      'http://fonts.cdnfonts.com/css/gisha', 
+      'http://fonts.cdnfonts.com/css/gisha',
       'http://fonts.cdnfonts.com/css/aharoni',
     ],
     onReady: () => console.log('Hola'),

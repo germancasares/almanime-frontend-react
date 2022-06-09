@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import UserApi from 'api/UserApi';
 import Loader from 'components/loader';
 import { FormEvent, useEffect, useState } from 'react';
@@ -29,13 +30,13 @@ const Edit = ({ token }: { token?: string }) => {
           <div className="field">
             <label className="label" htmlFor="name">Name</label>
             <div className="control">
-              <input 
-                name="name" 
-                className="input" 
-                type="text" 
+              <input
+                name="name"
+                className="input"
+                type="text"
                 value={user.name}
-                placeholder="Luffy" 
-                onChange={({ target: { value } }) => setUser({ name: value, permissions: me.permissions })} 
+                placeholder="Luffy"
+                onChange={({ target: { value } }) => setUser({ name: value, permissions: me.permissions })}
               />
             </div>
           </div>

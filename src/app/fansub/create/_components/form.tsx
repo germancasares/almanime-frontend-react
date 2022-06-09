@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -13,7 +14,7 @@ const Form = () => {
   const [fansub, setFansub] = useState({} as FansubDTO);
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { target: { name, value } } = event;
-    setFansub(values => ({ ...values, [name]: value === '' ? undefined : value }));
+    setFansub((values) => ({ ...values, [name]: value === '' ? undefined : value }));
   };
 
   const { getAccessTokenSilently } = useAuth0();
@@ -46,9 +47,9 @@ const Form = () => {
       </div>
 
       <div className="field">
-        <label className="label">Webpage</label>
+        <label className="label" htmlFor="webpage">Webpage</label>
         <div className="control">
-          <input name="webpage" className="input" type="url" placeholder="www.example.com" onChange={onChange}/>
+          <input name="webpage" className="input" type="url" placeholder="www.example.com" onChange={onChange} />
         </div>
       </div>
 
@@ -60,4 +61,3 @@ const Form = () => {
 };
 
 export default Form;
-

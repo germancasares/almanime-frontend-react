@@ -8,7 +8,7 @@ it('renders without crashing', () => {
   createRoot(div).render(
     <Tabs
       activeTab={TabName.Newest}
-      changeTab={()=> {}}
+      changeTab={() => {}}
     />,
   );
 });
