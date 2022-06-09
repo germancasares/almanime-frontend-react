@@ -13,7 +13,9 @@ const List = () => {
   return (
     <main>
       {
-        episodes && episodes.map(({number, name, duration, aired}) => (
+        episodes && episodes.map(({
+          number, name, duration, aired,
+        }) => (
           <div key={number}>
             <Link to={routes.episode.view.to(slug, number.toString())}>
               {`${number} ${name} ${duration} ${aired}`}
