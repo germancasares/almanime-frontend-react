@@ -8,11 +8,17 @@ const List = () => {
 
   if (!users) return (<Loader />);
 
-  return users.map((user) => (
-    <Link key={user.name} to={routes.user.view.to(user.name)}>
-      {user.name}
-    </Link>
-  ));
+  return (
+    <>
+      {
+        users.map(({ name }) => (
+          <Link key={name} to={routes.user.view.to(name)}>
+            {name}
+          </Link>
+        ))
+      }
+    </>
+  );
 };
 
 export default List;

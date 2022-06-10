@@ -46,6 +46,7 @@
 		},
 		// Jest
 		"jest": {
+			"autoRun": "off",
 			"showTerminalOnLaunch": false,
 			"showCoverageOnLoad": true,
 			"coverageFormatter": "GutterFormatter"

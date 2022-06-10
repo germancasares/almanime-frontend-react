@@ -1,7 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import Tabs from './tabs';
-
-import { TabName } from '..';
+import Tabs, { TabName } from './tabs';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

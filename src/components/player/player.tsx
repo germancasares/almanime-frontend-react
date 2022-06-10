@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import videojs, { VideoJsPlayer, VideoJsPlayerOptions } from 'video.js';
 import 'video.js/dist/video-js.css';
 import '@videojs/themes/dist/forest/index.css';
@@ -6,17 +6,18 @@ import '@videojs/themes/dist/forest/index.css';
 import SubtitlesOctopus, { Options } from 'libass-wasm';
 
 export type PlayerProps = {
+  videoRef: RefObject<HTMLVideoElement>,
   playerOptions: VideoJsPlayerOptions,
   subtitleOptions?: Options,
   onReady?: (player: VideoJsPlayer) => void,
 };
 
 const Player = ({
+  videoRef,
   playerOptions,
   subtitleOptions,
   onReady,
 }: PlayerProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const playerRef = useRef<VideoJsPlayer | null>(null);
   const subtitleRef = useRef<SubtitlesOctopus | null>(null);
 
@@ -39,9 +40,6 @@ const Player = ({
       if (!videoElement) return;
 
       const player = videojs(videoElement, playerOptions, () => {
-        console.log('player is ready');
-        onReady && onReady(player);
-
         if (subtitleOptions) {
           if (!subtitleRef.current) {
             subtitleRef.current = new SubtitlesOctopus({
@@ -53,6 +51,8 @@ const Player = ({
             // Modify current instance of subtitleRef
           }
         }
+
+        onReady && onReady(player);
       });
       playerRef.current = player;
     } else {

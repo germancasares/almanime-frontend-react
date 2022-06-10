@@ -1,4 +1,4 @@
-import './help.scss';
+import './help';
 
 type Props = {
   message: string,

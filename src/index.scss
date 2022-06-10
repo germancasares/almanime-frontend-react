@@ -1,14 +1,14 @@
 @charset "utf-8";
 
 @import-normalize;
+@import './styles/variables';
 
-$body-overflow-y: auto;
-$navbar-item-img-max-height: 2.75rem;
+$footer-padding: $footer-top-padding $footer-sides-padding $footer-bottom-padding;
 
 @import '~bulma/bulma';
 
 // Global rules
-@import 'styles/theme-palette.scss';
+@import 'styles/theme-palette';
 
 .button {
   @include back-contrast($primary);
