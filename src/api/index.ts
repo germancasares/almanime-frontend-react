@@ -5,10 +5,12 @@ const configureFetch = (): void => {
 };
 
 const fetchAbsolute = async (input: RequestInfo | URL, init?: RequestInit) => {
-  const route = input.toString();
-
   let response;
-  if (route.startsWith('http') || route.startsWith('/')) {
+
+  const route = input.toString();
+  if (input instanceof Request) {
+    response = await realFetch(input, init);
+  } else if (route.startsWith('http') || route.startsWith('/')) {
     response = await realFetch(route, init);
   } else {
     response = await realFetch(`${process.env.REACT_APP_API}/${route}`, init);
